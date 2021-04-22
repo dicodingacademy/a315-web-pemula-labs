@@ -20,9 +20,12 @@ header {
 
 .wrapper {
     display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .wrapper .container {
+    width: 1024px;
     border-radius: 8px;
     margin: 16px;
     background: #F8F9FA;
@@ -35,14 +38,20 @@ header {
 .item {
     border-radius: 16px;
     margin-top: 16px;
-    padding: 24px;
+    padding: 12px 24px 12px 24px;
     background: white;
+    display: flex;
+    align-items: center;
 }
 
-.item:hover {
-    background-color: #5F30E2;
-    color: white;
+.item > .inner h2 {
+    margin-bottom: unset;
 }
+
+.item > .inner p {
+    margin-top: 5px;
+}
+
 
 .form {
     display: flex;
@@ -59,7 +68,7 @@ header {
 
 .form-group label {
     margin-bottom: 4px;
-    font-size: medium;
+    font-size: 18;
     font-weight: lighter;
 }
 
@@ -67,7 +76,8 @@ header {
     box-shadow: 0 5px 10px rgba(154, 160, 185, .05), 0 15px 40px rgba(166, 173, 201, .2);
 }
 
-input[type=text] {
+input[type=text],
+input[type=date] {
     font-family: Raleway;
     background: #F5F1FF;
     border: 2px solid #9475EA;
@@ -75,6 +85,7 @@ input[type=text] {
     padding: 16px;
     box-sizing: border-box;
     margin-bottom: 8px;
+    font-size: 24px;
 }
 
 .btn-submit {
@@ -83,10 +94,23 @@ input[type=text] {
     font-family: Raleway;
     border-radius: 16px;
     padding: 12px 24px;
-    color: white;
-    background: #5F30E2;
+    border:2px solid #5F30E2;
+    color: black;
+    font-size: 24px;
     margin-top: auto;
     align-self: flex-end;
+    cursor: pointer;
+}
+
+.btn-submit:hover{
+    background: #5F30E2;
+    color: white;
+}
+
+input[type=text],
+input[type=date],
+.btn-submit:focus{
+    outline: none;
 }
 
 
@@ -98,10 +122,63 @@ input[type=text] {
     margin: auto 0;
 }
 
+.check-button {
+    background: url('../assets/check-outline.svg');
+    background-size: contain;
+    width: 40px;
+    height: 40px;
+    margin-left: auto;
+    cursor: pointer;
+    border: none;
+}
+
+.check-button:hover {
+    background: url('../assets/check-solid.svg');
+    background-size: contain;
+}
+
+.trash-button{
+    background: url('../assets/trash-outline.svg');
+    background-size: contain;
+    width: 40px;
+    height: 40px;
+    margin-left: 16px;
+    cursor: pointer;
+    border: none;
+}
+
+.trash-button:hover {
+    background: url('../assets/trash-fill.svg');
+    background-size: contain;
+}
+
+.undo-button{
+    background: url('../assets/undo-ouline.svg');
+    background-size: contain;
+    width: 40px;
+    height: 40px;
+    margin-left: auto;
+    cursor: pointer;
+    border: none;
+}
+
+.undo-button:hover {
+    background: url('../assets/undo-ouline.svg');
+    background-size: contain;
+}
+
+.check-button:focus, .trash-button {
+    outline: none;
+}
+
 
 @media only screen and (max-width: 1024px) {
     .wrapper {
-        flex-direction: column-reverse;
+        margin: 0;
+    }
+
+    .wrapper .container {
+        width: 100%;
     }
 
     .list-item {
