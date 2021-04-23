@@ -1,6 +1,5 @@
 const UNCOMPLETED_LIST_TODO_ID = "todos";
 const COMPLETED_LIST_TODO_ID = "completed-todos";
-const TODO_ACCESS_OBJECT = "dataTodo";
 
 function makeTodo(data /* string */, timestamp /* string */, isCompleted /* boolean */) {
 
@@ -29,12 +28,6 @@ function makeTodo(data /* string */, timestamp /* string */, isCompleted /* bool
         );
     }
 
-    container[TODO_ACCESS_OBJECT] = {
-        data,
-        timestamp,
-        isCompleted
-    };
-
     return container;
 }
 
@@ -56,22 +49,30 @@ function createCheckButton() {
     });
 }
 
-function createButton(buttonTypeClass /* string */, eventListener /* Event */) {
+function createButton(buttonTypeClass /* string */, eventListener /* callback function */) {
     const button = document.createElement("button");
     button.classList.add(buttonTypeClass);
     button.addEventListener("click", function (event) {
         eventListener(event);
-        event.stopPropagation();
     });
     return button;
 }
 
 
+function addTodo() {
+    const uncompletedTODOList = document.getElementById(UNCOMPLETED_LIST_TODO_ID);
+    const textTodo = document.getElementById("title").value;
+    const timestamp = document.getElementById("date").value;
+    const todo = makeTodo(textTodo, timestamp, false);
 
+    uncompletedTODOList.append(todo);
+}
 function addTaskToCompleted(taskElement /* HTMLELement */) {
-    let listCompleted = document.getElementById(COMPLETED_LIST_TODO_ID);
-    let todoData = taskElement[TODO_ACCESS_OBJECT];
-    let newTodo = makeTodo(todoData.data, todoData.timestamp, !todoData.isCompleted);
+    const listCompleted = document.getElementById(COMPLETED_LIST_TODO_ID);
+    const taskTitle = taskElement.querySelector(".inner > h2").innerText;
+    const taskTimestamp = taskElement.querySelector(".inner > p").innerText;
+
+    const newTodo = makeTodo(taskTitle, taskTimestamp, true);
 
     listCompleted.append(newTodo);
     taskElement.remove();
@@ -83,8 +84,10 @@ function removeTaskFromCompleted(taskElement /* HTMLELement */) {
 
 function undoTaskFromCompleted(taskElement /* HTMLELement */){
     const listUncompleted = document.getElementById(UNCOMPLETED_LIST_TODO_ID);
-    let todoData = taskElement[TODO_ACCESS_OBJECT];
-    let newTodo = makeTodo(todoData.data, todoData.timestamp, !todoData.isCompleted);
+    const taskTitle = taskElement.querySelector(".inner > h2").innerText;
+    const taskTimestamp = taskElement.querySelector(".inner > p").innerText;
+
+    const newTodo = makeTodo(taskTitle, taskTimestamp, false);
 
     listUncompleted.append(newTodo);
     taskElement.remove();
