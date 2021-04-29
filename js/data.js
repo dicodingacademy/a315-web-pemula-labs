@@ -43,11 +43,11 @@ function saveData() {
 function loadDataFromStorage() {
     const serializedData /* string */ = localStorage.getItem(STORAGE_KEY);
     
-    let data = [];
-    if(serializedData || serializedData === ""){
-        data = JSON.parse(serializedData);
-    } 
-    todos = data;
+    let data = JSON.parse(serializedData);
+    
+    if(data !== null)
+        todos = data;
+        
     document.dispatchEvent(new Event("ondataloaded"));
 }
 
@@ -58,7 +58,7 @@ function updateDataToStorage() {
 
 function composeTodoObject(task, timestamp, isCompleted) {
     return {
-        id: todos.length,
+        id: +new Date(),
         task,
         timestamp,
         isCompleted
