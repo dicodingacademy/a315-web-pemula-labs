@@ -83,9 +83,7 @@ function addTaskToCompleted(taskElement /* HTMLELement */) {
     const newTodo = makeTodo(taskTitle, taskTimestamp, true);
     
 
-    const todo = todos.find(function (todo) {
-        return todo.id === taskElement[TODO_ITEMID];
-    });
+    const todo = findTodo(taskElement[TODO_ITEMID]);
     todo.isCompleted = true;
     newTodo[TODO_ITEMID] = todo.id;
 
@@ -97,9 +95,7 @@ function addTaskToCompleted(taskElement /* HTMLELement */) {
 
 function removeTaskFromCompleted(taskElement /* HTMLELement */) {
 
-    const todoPosition = todos.findIndex(function (todo) {
-        return todo.id === taskElement[TODO_ITEMID];
-    });
+    const todoPosition = findTodoIndex(taskElement[TODO_ITEMID]);
     todos.splice(todoPosition, 1);
 
     taskElement.remove();
@@ -113,9 +109,7 @@ function undoTaskFromCompleted(taskElement /* HTMLELement */) {
     
     const newTodo = makeTodo(taskTitle, taskTimestamp, false);
 
-    const todo = todos.find(function (todo) {
-        return todo.id === taskElement[TODO_ITEMID];
-    })
+    const todo = findTodo(taskElement[TODO_ITEMID]);
     todo.isCompleted = false;
     newTodo[TODO_ITEMID] = todo.id;
 
