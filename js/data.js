@@ -47,7 +47,7 @@ function loadDataFromStorage() {
     
     if(data !== null)
         todos = data;
-        
+
     document.dispatchEvent(new Event("ondataloaded"));
 }
 
@@ -63,4 +63,27 @@ function composeTodoObject(task, timestamp, isCompleted) {
         timestamp,
         isCompleted
     };
+}
+
+function findTodo(todoId) {
+
+    for(todo of todos){
+        if(todo.id === todoId)
+            return todo;
+    }
+
+    return null;
+}
+
+function findTodoIndex(todoId) {
+    
+    let index = 0
+    for (todo of todos) {
+        if(todo.id === todoId)
+            return index;
+
+        index++;
+    }
+
+    return -1;
 }
