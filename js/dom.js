@@ -129,7 +129,7 @@ function refreshDataFromTodos() {
     const listUncompleted = document.getElementById(UNCOMPLETED_LIST_TODO_ID);
     let listCompleted = document.getElementById(COMPLETED_LIST_TODO_ID);
 
-    todos.forEach((todo) => {
+    for(todo of todos){
         const newTodo = makeTodo(todo.task, todo.timestamp, todo.isCompleted);
         newTodo[TODO_ITEMID] = todo.id;
 
@@ -138,5 +138,5 @@ function refreshDataFromTodos() {
         } else {
             listUncompleted.append(newTodo);
         }
-    });
+    }
 }
