@@ -15,6 +15,7 @@ function makeTodo(todoObject){//data /* string */, timestamp /* string */, isCom
     const container = document.createElement("div");
     container.classList.add("item", "shadow")
     container.append(textContainer);
+    container.setAttribute("id", `todo-${id}`);
     
     if(isCompleted){
         container.append(
@@ -80,7 +81,6 @@ function addTaskToCompleted(todoId /* HTMLELement */) {
 }
 
 function removeTaskFromCompleted(todoId /* HTMLELement */) {
-    // todoElement.remove();
     const todoTarget = findTodoIndex(todoId);
     if(todoTarget === -1) return;
     todo.splice(todoTarget, 1);
