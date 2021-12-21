@@ -7,3 +7,22 @@ document.addEventListener("DOMContentLoaded", function () {
         addTodo();
     });
 });
+
+
+document.addEventListener(RENDER_EVENT, function () {
+    const uncompletedTODOList = document.getElementById("todos");
+    const listCompleted = document.getElementById("completed-todos");
+
+    // clearing list item
+    uncompletedTODOList.innerHTML = ""
+    listCompleted.innerHTML = ""
+
+    for(todoItem of todo){
+        const todoElement = makeTodo(todoItem);
+        if(todoItem.isCompleted){
+            listCompleted.append(todoElement);
+        } else {
+            uncompletedTODOList.append(todoElement);
+        }
+    }
+})

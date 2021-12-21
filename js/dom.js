@@ -1,10 +1,9 @@
-const UNCOMPLETED_LIST_TODO_ID = "todos";
-const COMPLETED_LIST_TODO_ID = "completed-todos";
+function makeTodo(todoObject){//data /* string */, timestamp /* string */, isCompleted /* boolean */) {
 
-function makeTodo(data /* string */, timestamp /* string */, isCompleted /* boolean */) {
+    const {id, task, timestamp, isCompleted} = todoObject;
 
     const textTitle = document.createElement("h2");
-    textTitle.innerText = data;
+    textTitle.innerText = task;
 
     const textTimestamp = document.createElement("p");
     textTimestamp.innerText = timestamp;
@@ -19,33 +18,34 @@ function makeTodo(data /* string */, timestamp /* string */, isCompleted /* bool
     
     if(isCompleted){
         container.append(
-            createUndoButton(),
-            createTrashButton()
+            createUndoButton(id),
+            createTrashButton(id)
         );
     } else {
         container.append(
-            createCheckButton()
+            createCheckButton(id)
         );
     }
 
     return container;
 }
 
-function createUndoButton() {
-    return createButton("undo-button", function(event){
-        undoTaskFromCompleted(event.target.parentElement);
+
+function createUndoButton(todoId) {
+    return createButton("undo-button", function(){
+        undoTaskFromCompleted(todoId);
     });
 }
 
-function createTrashButton() {
-    return createButton("trash-button", function(event){
-        removeTaskFromCompleted(event.target.parentElement);
+function createTrashButton(todoId) {
+    return createButton("trash-button", function(){
+        removeTaskFromCompleted(todoId);
     });
 }
 
-function createCheckButton() {
-    return createButton("check-button", function(event){
-        addTaskToCompleted(event.target.parentElement);
+function createCheckButton(todoId) {
+    return createButton("check-button", function(){
+        addTaskToCompleted(todoId);
     });
 }
 
@@ -60,35 +60,39 @@ function createButton(buttonTypeClass /* string */, eventListener /* callback fu
 
 
 function addTodo() {
-    const uncompletedTODOList = document.getElementById(UNCOMPLETED_LIST_TODO_ID);
     const textTodo = document.getElementById("title").value;
     const timestamp = document.getElementById("date").value;
-    const todo = makeTodo(textTodo, timestamp, false);
 
-    uncompletedTODOList.append(todo);
-}
-function addTaskToCompleted(taskElement /* HTMLELement */) {
-    const listCompleted = document.getElementById(COMPLETED_LIST_TODO_ID);
-    const taskTitle = taskElement.querySelector(".inner > h2").innerText;
-    const taskTimestamp = taskElement.querySelector(".inner > p").innerText;
-
-    const newTodo = makeTodo(taskTitle, taskTimestamp, true);
-
-    listCompleted.append(newTodo);
-    taskElement.remove();
+    const generatedID = generateId();
+    const todoObject = generateTodoObject(generatedID, textTodo, timestamp, false)
+    todo.push(todoObject)
+    
+    document.dispatchEvent(new Event(RENDER_EVENT))
 }
 
-function removeTaskFromCompleted(taskElement /* HTMLELement */) {
-    taskElement.remove();
+function addTaskToCompleted(todoId /* HTMLELement */) {
+
+    const todoTarget = findTodo(todoId);
+    if(todoTarget == null) return;
+
+    todoTarget.isCompleted = true;
+    document.dispatchEvent(new Event(RENDER_EVENT));
 }
 
-function undoTaskFromCompleted(taskElement /* HTMLELement */){
-    const listUncompleted = document.getElementById(UNCOMPLETED_LIST_TODO_ID);
-    const taskTitle = taskElement.querySelector(".inner > h2").innerText;
-    const taskTimestamp = taskElement.querySelector(".inner > p").innerText;
+function removeTaskFromCompleted(todoId /* HTMLELement */) {
+    // todoElement.remove();
+    const todoTarget = findTodoIndex(todoId);
+    if(todoTarget === -1) return;
+    todo.splice(todoTarget, 1);
+    
+    document.dispatchEvent(new Event(RENDER_EVENT));
+}
 
-    const newTodo = makeTodo(taskTitle, taskTimestamp, false);
+function undoTaskFromCompleted(todoId /* HTMLELement */){
 
-    listUncompleted.append(newTodo);
-    taskElement.remove();
+    const todoTarget = findTodo(todoId);
+    if(todoTarget == null) return;
+
+    todoTarget.isCompleted = false;
+    document.dispatchEvent(new Event(RENDER_EVENT));
 }
