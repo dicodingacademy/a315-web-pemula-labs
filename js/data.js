@@ -1,4 +1,14 @@
-const todo = [];
+/**
+ * [
+ *    {
+ *      id: <int>
+ *      task: <string>
+ *      timestamp: <string>
+ *      isCompleted: <boolean>
+ *    }
+ * ]
+ */
+const todos = [];
 const RENDER_EVENT = "render-todo";
 
 function generateId() {
@@ -15,7 +25,7 @@ function generateTodoObject(id, task, timestamp, isCompleted) {
 }
 
 function findTodo(todoId){
-    for(todoItem of todo){
+    for(todoItem of todos){
         if(todoItem.id === todoId){
             return todoItem
         }
@@ -24,7 +34,7 @@ function findTodo(todoId){
 }
 
 function findTodoIndex(todoId) {
-    for(index in todo){
+    for(index in todos){
         if(todo[index].id === todoId){
             return index
         }

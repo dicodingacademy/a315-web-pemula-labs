@@ -1,4 +1,4 @@
-function makeTodo(todoObject){//data /* string */, timestamp /* string */, isCompleted /* boolean */) {
+function makeTodo(todoObject) {
 
     const {id, task, timestamp, isCompleted} = todoObject;
 
