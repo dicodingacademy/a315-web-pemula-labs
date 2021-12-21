@@ -12,10 +12,24 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-document.addEventListener("ondatasaved", () => {
+document.addEventListener(SAVED_EVENT, () => {
     console.log("Data berhasil di simpan.");
 });
 
-document.addEventListener("ondataloaded", () => {
-    refreshDataFromTodos();
-});
+document.addEventListener(RENDER_EVENT, function () {
+    const uncompletedTODOList = document.getElementById("todos");
+    const listCompleted = document.getElementById("completed-todos");
+
+    // clearing list item
+    uncompletedTODOList.innerHTML = ""
+    listCompleted.innerHTML = ""
+
+    for(todoItem of todos){
+        const todoElement = makeTodo(todoItem);
+        if(todoItem.isCompleted){
+            listCompleted.append(todoElement);
+        } else {
+            uncompletedTODOList.append(todoElement);
+        }
+    }
+})

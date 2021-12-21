@@ -1,5 +1,3 @@
-const STORAGE_KEY = "TODO_APPS";
-
 /**
  * [
  *    {
@@ -10,8 +8,42 @@ const STORAGE_KEY = "TODO_APPS";
  *    }
  * ]
  */
-
-let todos = [];
+ const todos = [];
+ const RENDER_EVENT = "render-todo";
+ const SAVED_EVENT = "saved-todo";
+ const STORAGE_KEY = "TODO_APPS";
+ 
+ function generateId() {
+     return +new Date();
+ }
+ 
+ function generateTodoObject(id, task, timestamp, isCompleted) {
+     return {
+         id,
+         task,
+         timestamp,
+         isCompleted
+     }
+ }
+ 
+ function findTodo(todoId){
+     for(todoItem of todos){
+         if(todoItem.id === todoId){
+             return todoItem
+         }
+     }
+     return null
+ }
+ 
+ function findTodoIndex(todoId) {
+     for(index in todos){
+         if(todos[index].id === todoId){
+             return index
+         }
+     }
+     return -1
+ }
+ 
 
 /**
   * Fungsi ini digunakan untuk memeriksa apakah localStorage didukung oleh browser atau tidak
@@ -31,9 +63,12 @@ let todos = [];
  * berdasarkan KEY yang sudah ditetapkan sebelumnya.
  */
 function saveData() {
-    const parsed /* string */ = JSON.stringify(todos);
-    localStorage.setItem(STORAGE_KEY, parsed);
-    document.dispatchEvent(new Event("ondatasaved"));
+    if(isStorageExist()){
+        const parsed /* string */ = JSON.stringify(todos);
+        localStorage.setItem(STORAGE_KEY, parsed);
+        document.dispatchEvent(new Event(SAVED_EVENT));
+        
+    }
 }
 
 /**
@@ -45,45 +80,11 @@ function loadDataFromStorage() {
     
     let data = JSON.parse(serializedData);
     
-    if(data !== null)
-        todos = data;
-
-    document.dispatchEvent(new Event("ondataloaded"));
-}
-
-function updateDataToStorage() {
-    if(isStorageExist())
-        saveData();
-}
-
-function composeTodoObject(task, timestamp, isCompleted) {
-    return {
-        id: +new Date(),
-        task,
-        timestamp,
-        isCompleted
-    };
-}
-
-function findTodo(todoId) {
-
-    for(todo of todos){
-        if(todo.id === todoId)
-            return todo;
+    if(data !== null){
+        for(todo of data){
+            todos.push(todo);
+        }
     }
 
-    return null;
-}
-
-function findTodoIndex(todoId) {
-    
-    let index = 0
-    for (todo of todos) {
-        if(todo.id === todoId)
-            return index;
-
-        index++;
-    }
-
-    return -1;
+    document.dispatchEvent(new Event(RENDER_EVENT));
 }
