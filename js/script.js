@@ -17,7 +17,7 @@ document.addEventListener(RENDER_EVENT, function () {
     uncompletedTODOList.innerHTML = ""
     listCompleted.innerHTML = ""
 
-    for(todoItem of todo){
+    for(todoItem of todos){
         const todoElement = makeTodo(todoItem);
         if(todoItem.isCompleted){
             listCompleted.append(todoElement);

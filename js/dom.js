@@ -18,47 +18,33 @@ function makeTodo(todoObject) {
     container.setAttribute("id", `todo-${id}`);
     
     if(isCompleted){
-        container.append(
-            createUndoButton(id),
-            createTrashButton(id)
-        );
+
+        const undoButton = document.createElement("button");
+        undoButton.classList.add("undo-button");
+        undoButton.addEventListener("click", function () {
+            undoTaskFromCompleted(id);
+        });
+
+        const trashButton = document.createElement("button");
+        trashButton.classList.add("trash-button");
+        trashButton.addEventListener("click", function () {
+            removeTaskFromCompleted(id);
+        });
+
+        container.append(undoButton, trashButton);
     } else {
-        container.append(
-            createCheckButton(id)
-        );
+
+        const checkButton = document.createElement("button");
+        checkButton.classList.add("check-button");
+        checkButton.addEventListener("click", function () {
+            addTaskToCompleted(id);
+        });
+
+        container.append(checkButton);
     }
 
     return container;
 }
-
-
-function createUndoButton(todoId) {
-    return createButton("undo-button", function(){
-        undoTaskFromCompleted(todoId);
-    });
-}
-
-function createTrashButton(todoId) {
-    return createButton("trash-button", function(){
-        removeTaskFromCompleted(todoId);
-    });
-}
-
-function createCheckButton(todoId) {
-    return createButton("check-button", function(){
-        addTaskToCompleted(todoId);
-    });
-}
-
-function createButton(buttonTypeClass /* string */, eventListener /* callback function */) {
-    const button = document.createElement("button");
-    button.classList.add(buttonTypeClass);
-    button.addEventListener("click", function (event) {
-        eventListener(event);
-    });
-    return button;
-}
-
 
 function addTodo() {
     const textTodo = document.getElementById("title").value;
@@ -66,7 +52,7 @@ function addTodo() {
 
     const generatedID = generateId();
     const todoObject = generateTodoObject(generatedID, textTodo, timestamp, false)
-    todo.push(todoObject)
+    todos.push(todoObject)
     
     document.dispatchEvent(new Event(RENDER_EVENT))
 }
@@ -83,7 +69,7 @@ function addTaskToCompleted(todoId /* HTMLELement */) {
 function removeTaskFromCompleted(todoId /* HTMLELement */) {
     const todoTarget = findTodoIndex(todoId);
     if(todoTarget === -1) return;
-    todo.splice(todoTarget, 1);
+    todos.splice(todoTarget, 1);
     
     document.dispatchEvent(new Event(RENDER_EVENT));
 }

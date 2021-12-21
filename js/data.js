@@ -35,7 +35,7 @@ function findTodo(todoId){
 
 function findTodoIndex(todoId) {
     for(index in todos){
-        if(todo[index].id === todoId){
+        if(todos[index].id === todoId){
             return index
         }
     }
