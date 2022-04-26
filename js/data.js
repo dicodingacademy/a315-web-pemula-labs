@@ -1,4 +1,4 @@
-const STORAGE_KEY = "TODO_APPS";
+const STORAGE_KEY = 'TODO_APPS';
 
 /**
  * [
@@ -14,16 +14,16 @@ const STORAGE_KEY = "TODO_APPS";
 let todos = [];
 
 /**
-  * Fungsi ini digunakan untuk memeriksa apakah localStorage didukung oleh browser atau tidak
-  * 
-  * @returns boolean 
-  */
- function isStorageExist() /* boolean */ {
-    if(typeof(Storage) === undefined){
-        alert("Browser kamu tidak mendukung local storage");
-        return false
-    } 
-    return true;
+ * Fungsi ini digunakan untuk memeriksa apakah localStorage didukung oleh browser atau tidak
+ *
+ * @returns boolean
+ */
+function isStorageExist() /* boolean */ {
+  if (typeof (Storage) === undefined) {
+    alert('Browser kamu tidak mendukung local storage');
+    return false;
+  }
+  return true;
 }
 
 /**
@@ -31,9 +31,9 @@ let todos = [];
  * berdasarkan KEY yang sudah ditetapkan sebelumnya.
  */
 function saveData() {
-    const parsed /* string */ = JSON.stringify(todos);
-    localStorage.setItem(STORAGE_KEY, parsed);
-    document.dispatchEvent(new Event("ondatasaved"));
+  const parsed /* string */ = JSON.stringify(todos);
+  localStorage.setItem(STORAGE_KEY, parsed);
+  document.dispatchEvent(new Event('ondatasaved'));
 }
 
 /**
@@ -41,49 +41,48 @@ function saveData() {
  * Dan memasukkan data hasil parsing ke variabel {@see todos}
  */
 function loadDataFromStorage() {
-    const serializedData /* string */ = localStorage.getItem(STORAGE_KEY);
-    
-    let data = JSON.parse(serializedData);
-    
-    if(data !== null)
-        todos = data;
+  const serializedData /* string */ = localStorage.getItem(STORAGE_KEY);
 
-    document.dispatchEvent(new Event("ondataloaded"));
+  let data = JSON.parse(serializedData);
+
+  if (data !== null)
+    todos = data;
+
+  document.dispatchEvent(new Event('ondataloaded'));
 }
 
 function updateDataToStorage() {
-    if(isStorageExist())
-        saveData();
+  if (isStorageExist())
+    saveData();
 }
 
 function composeTodoObject(task, timestamp, isCompleted) {
-    return {
-        id: +new Date(),
-        task,
-        timestamp,
-        isCompleted
-    };
+  return {
+    id: +new Date(),
+    task,
+    timestamp,
+    isCompleted
+  };
 }
 
 function findTodo(todoId) {
 
-    for(todo of todos){
-        if(todo.id === todoId)
-            return todo;
-    }
+  for (const todo of todos) {
+    if (todo.id === todoId)
+      return todo;
+  }
 
-    return null;
+  return null;
 }
 
 function findTodoIndex(todoId) {
-    
-    let index = 0
-    for (todo of todos) {
-        if(todo.id === todoId)
-            return index;
 
-        index++;
-    }
+  let index = 0;
+  for (const todo of todos) {
+    if (todo.id === todoId)
+      return index;
+    index++;
+  }
 
-    return -1;
+  return -1;
 }

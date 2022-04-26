@@ -1,8 +1,8 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener('DOMContentLoaded', function () {
 
-    const submitForm /* HTMLFormElement */ = document.getElementById("form");
+    const submitForm /* HTMLFormElement */ = document.getElementById('form');
 
-    submitForm.addEventListener("submit", function (event) {
+    submitForm.addEventListener('submit', function (event) {
         event.preventDefault();
         addTodo();
     });
@@ -12,10 +12,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-document.addEventListener("ondatasaved", () => {
-    console.log("Data berhasil di simpan.");
+document.addEventListener('ondatasaved', () => {
+    console.log('Data berhasil di simpan.');
 });
 
-document.addEventListener("ondataloaded", () => {
+document.addEventListener('ondataloaded', () => {
     refreshDataFromTodos();
 });
