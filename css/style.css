@@ -1,12 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
 
-* {
+*, *::before, *::after {
     box-sizing: border-box;
 }
 
-html,
-body {
-    font-family: Raleway;
+html, body {
+    font-family: Raleway, sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -34,7 +33,6 @@ header {
     height: fit-content;
 }
 
-
 .item {
     border-radius: 16px;
     margin-top: 16px;
@@ -52,7 +50,6 @@ header {
     margin-top: 5px;
 }
 
-
 .form {
     display: flex;
     padding: 16px;
@@ -68,7 +65,7 @@ header {
 
 .form-group label {
     margin-bottom: 4px;
-    font-size: 18;
+    font-size: 18px;
     font-weight: lighter;
 }
 
@@ -76,9 +73,8 @@ header {
     box-shadow: 0 5px 10px rgba(154, 160, 185, .05), 0 15px 40px rgba(166, 173, 201, .2);
 }
 
-input[type=text],
-input[type=date] {
-    font-family: Raleway;
+input[type=text], input[type=date] {
+    font-family: Raleway, sans-serif;
     background: #F5F1FF;
     border: 2px solid #9475EA;
     border-radius: 8px;
@@ -90,11 +86,10 @@ input[type=date] {
 
 .btn-submit {
     width: fit-content;
-    border: none;
-    font-family: Raleway;
+    font-family: Raleway, sans-serif;
     border-radius: 16px;
     padding: 12px 24px;
-    border:2px solid #5F30E2;
+    border: 2px solid #5F30E2;
     color: black;
     font-size: 24px;
     margin-top: auto;
@@ -102,14 +97,12 @@ input[type=date] {
     cursor: pointer;
 }
 
-.btn-submit:hover{
+.btn-submit:hover {
     background: #5F30E2;
     color: white;
 }
 
-input[type=text],
-input[type=date],
-.btn-submit:focus{
+input[type=text], input[type=date], .btn-submit:focus {
     outline: none;
 }
 
@@ -137,7 +130,7 @@ input[type=date],
     background-size: contain;
 }
 
-.trash-button{
+.trash-button {
     background: url('../assets/trash-outline.svg');
     background-size: contain;
     width: 40px;
@@ -152,7 +145,7 @@ input[type=date],
     background-size: contain;
 }
 
-.undo-button{
+.undo-button {
     background: url('../assets/undo-ouline.svg');
     background-size: contain;
     width: 40px;
@@ -171,7 +164,6 @@ input[type=date],
     outline: none;
 }
 
-
 @media only screen and (max-width: 1024px) {
     .wrapper {
         margin: 0;
@@ -188,5 +180,4 @@ input[type=date],
     .form {
         width: 100%;
     }
-
 }
