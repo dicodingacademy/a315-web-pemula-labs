@@ -1,9 +1,9 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener('DOMContentLoaded', function () {
 
-    const submitForm /* HTMLFormElement */ = document.getElementById("form");
+  const submitForm /* HTMLFormElement */ = document.getElementById('form');
 
-    submitForm.addEventListener("submit", function (event) {
-        event.preventDefault();
-        addTodo();
-    });
+  submitForm.addEventListener('submit', function (event) {
+    event.preventDefault();
+    addTodo();
+  });
 });
