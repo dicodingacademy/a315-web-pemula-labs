@@ -1,15 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
 
-* {
+*, *::before, *::after {
     box-sizing: border-box;
 }
 
-html,
-body {
-    font-family: Raleway;
+html, body {
+    font-family: Raleway, sans-serif;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
 header {
@@ -26,22 +24,22 @@ header {
 
 .wrapper .container {
     width: 1024px;
-    border-radius: 8px;
-    margin: 16px;
-    background: #F8F9FA;
-    padding: 16px;
-    flex-grow: 1;
     height: fit-content;
+    background: #F8F9FA;
+    margin: 16px;
+    padding: 16px;
+    border-radius: 8px;
+    flex-grow: 1;
 }
 
-
 .item {
-    border-radius: 16px;
-    margin-top: 16px;
-    padding: 12px 24px 12px 24px;
-    background: white;
     display: flex;
     align-items: center;
+
+    margin-top: 16px;
+    padding: 12px 24px 12px 24px;
+    border-radius: 16px;
+    background: white;
 }
 
 .item > .inner h2 {
@@ -52,12 +50,12 @@ header {
     margin-top: 5px;
 }
 
-
 .form {
-    display: flex;
-    padding: 16px;
-    flex-direction: column;
     height: 300px;
+    display: flex;
+    flex-direction: column;
+
+    padding: 16px;
     border-radius: 16px;
 }
 
@@ -68,7 +66,7 @@ header {
 
 .form-group label {
     margin-bottom: 4px;
-    font-size: 18;
+    font-size: 18px;
     font-weight: lighter;
 }
 
@@ -76,43 +74,38 @@ header {
     box-shadow: 0 5px 10px rgba(154, 160, 185, .05), 0 15px 40px rgba(166, 173, 201, .2);
 }
 
-input[type=text],
-input[type=date] {
-    font-family: Raleway;
+input[type=text], input[type=date] {
+    font-family: Raleway, sans-serif;
     background: #F5F1FF;
     border: 2px solid #9475EA;
     border-radius: 8px;
     padding: 16px;
-    box-sizing: border-box;
     margin-bottom: 8px;
     font-size: 24px;
 }
 
 .btn-submit {
     width: fit-content;
-    border: none;
-    font-family: Raleway;
     border-radius: 16px;
+    border: 2px solid #5F30E2;
     padding: 12px 24px;
-    border:2px solid #5F30E2;
-    color: black;
-    font-size: 24px;
     margin-top: auto;
     align-self: flex-end;
+
+    font-family: Raleway, sans-serif;
+    font-size: 24px;
+    color: black;
     cursor: pointer;
 }
 
-.btn-submit:hover{
+.btn-submit:hover {
     background: #5F30E2;
     color: white;
 }
 
-input[type=text],
-input[type=date],
-.btn-submit:focus{
+input[type=text], input[type=date], .btn-submit:focus {
     outline: none;
 }
-
 
 .text-center {
     text-align: center;
@@ -137,11 +130,12 @@ input[type=date],
     background-size: contain;
 }
 
-.trash-button{
-    background: url('../assets/trash-outline.svg');
-    background-size: contain;
+.trash-button {
     width: 40px;
     height: 40px;
+
+    background: url('../assets/trash-outline.svg');
+    background-size: contain;
     margin-left: 16px;
     cursor: pointer;
     border: none;
@@ -152,11 +146,12 @@ input[type=date],
     background-size: contain;
 }
 
-.undo-button{
-    background: url('../assets/undo-ouline.svg');
-    background-size: contain;
+.undo-button {
     width: 40px;
     height: 40px;
+
+    background: url('../assets/undo-ouline.svg');
+    background-size: contain;
     margin-left: auto;
     cursor: pointer;
     border: none;
@@ -170,7 +165,6 @@ input[type=date],
 .check-button:focus, .trash-button {
     outline: none;
 }
-
 
 @media only screen and (max-width: 1024px) {
     .wrapper {
@@ -188,5 +182,4 @@ input[type=date],
     .form {
         width: 100%;
     }
-
 }
