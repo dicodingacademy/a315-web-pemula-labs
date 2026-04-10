@@ -1,0 +1,520 @@
+/* =========================================================
+   Expense Tracker App — style.css
+   Penamaan class menggunakan konvensi BEM dengan namespace "tracker"
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --bg-page: #F6F7F9;
+  --bg-card: #FFFFFF;
+
+  --text-dark: #09090B;
+  --text-muted: #71717A;
+
+  --accent-blue: #2563EB;
+  --accent-light: #EFF6FF;
+
+  --color-income: #10B981;
+  --bg-income: #ECFDF5;
+  --color-expense: #F43F5E;
+  --bg-expense: #FFF1F2;
+
+  --border-light: #E4E4E7;
+
+  --font-family: 'Outfit', sans-serif;
+  --card-radius: 20px;
+  --card-padding: 24px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background-color: var(--bg-page);
+  color: var(--text-dark);
+  font-family: var(--font-family);
+  -webkit-font-smoothing: antialiased;
+  padding: 1.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+/* =========================================================
+   UTILITAS AKSESIBILITAS (SCREEN READER ONLY)
+   ========================================================= */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* =========================================================
+   TRACKER APP — WRAPPER UTAMA
+   ========================================================= */
+.tracker-app {
+  max-width: 1200px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.tracker-app main {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+/* Kartu dasar yang dipakai bersama di semua section */
+.tracker-summary__balance,
+.tracker-summary__stat,
+.tracker-form-section__card,
+.tracker-search,
+.tracker-transaction-list {
+  background: var(--bg-card);
+  border-radius: var(--card-radius);
+  border: 1px solid var(--border-light);
+  padding: var(--card-padding);
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* =========================================================
+   TRACKER HEADER
+   ========================================================= */
+.tracker-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+}
+
+.tracker-header__title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.tracker-header__user {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.tracker-header__user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.tracker-header__greeting {
+  font-size: 0.95rem;
+  color: var(--text-dark);
+}
+
+.tracker-header__date {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.tracker-header__avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+
+/* =========================================================
+   TRACKER SUMMARY — RINGKASAN SALDO
+   ========================================================= */
+.tracker-summary {
+  display: grid;
+  grid-template-columns: 2fr 1.25fr 1.25fr;
+  gap: 1.5rem;
+}
+
+.tracker-summary__label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+  margin-bottom: 0.75rem;
+}
+
+.tracker-summary__balance {
+  background: linear-gradient(145deg, var(--bg-card) 40%, var(--accent-light) 100%);
+}
+
+.tracker-summary__balance-amount {
+  font-size: 3.5rem;
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  margin-top: auto;
+}
+
+.tracker-summary__stat-amount {
+  font-size: 2.25rem;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  margin-top: auto;
+}
+
+.tracker-summary__stat-amount--income { color: var(--color-income); }
+.tracker-summary__stat-amount--expense { color: var(--color-expense); }
+
+/* =========================================================
+   TRACKER FORM — INPUT TRANSAKSI BARU
+   ========================================================= */
+.tracker-form-section__card {
+  box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+}
+
+.tracker-form-section__heading {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+}
+
+.tracker-form {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr auto;
+  gap: 1rem;
+  align-items: end;
+}
+
+.tracker-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.tracker-form__label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-dark);
+}
+
+.tracker-form__input {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-light);
+  background: #FCFCFC;
+  font-family: inherit;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.tracker-form__input:focus {
+  border-color: var(--accent-blue);
+  background: var(--bg-card);
+}
+
+.tracker-form__submit {
+  background: var(--text-dark);
+  color: #fff;
+  border: none;
+  padding: 0.85rem 1.5rem;
+  height: 44px;
+  border-radius: 12px;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: transform 0.1s, opacity 0.2s;
+}
+
+.tracker-form__submit:hover { opacity: 0.85; }
+.tracker-form__submit:active { transform: scale(0.98); }
+
+/* =========================================================
+   TRACKER SEARCH — FORM PENCARIAN
+   ========================================================= */
+.tracker-history {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.tracker-search {
+  padding: 1.25rem 1.5rem;
+}
+
+.tracker-search__form {
+  display: flex;
+  gap: 1rem;
+}
+
+.tracker-search__form .tracker-form__input {
+  flex: 1;
+  background: #FAFAFA;
+}
+
+.tracker-search__submit {
+  background: var(--bg-page);
+  border: 1px solid var(--border-light);
+  padding: 0 1.5rem;
+  border-radius: 12px;
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.tracker-search__submit:hover { background: #E4E4E7; }
+
+/* =========================================================
+   TRACKER HISTORY — DAFTAR TRANSAKSI
+   ========================================================= */
+.tracker-history__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.tracker-transaction-list__header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.tracker-transaction-list__title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
+
+.tracker-transaction-list__container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* =========================================================
+   TRACKER TRANSACTION ITEM — KARTU TRANSAKSI
+   ========================================================= */
+.tracker-transaction-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.tracker-transaction-item:last-child { border-bottom: none; }
+
+.tracker-transaction-item__icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.tracker-transaction-item__icon--income {
+  background: var(--bg-income);
+  color: var(--color-income);
+}
+
+.tracker-transaction-item__icon--expense {
+  background: var(--bg-expense);
+  color: var(--color-expense);
+}
+
+.tracker-transaction-item__detail {
+  flex: 1;
+  min-width: 0;
+}
+
+.tracker-transaction-item__title {
+  font-weight: 600;
+  font-size: 1.05rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tracker-transaction-item__date {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.tracker-transaction-item__right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.25rem;
+  flex-shrink: 0;
+}
+
+.tracker-transaction-item__amount {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.tracker-transaction-item__amount--income { color: var(--color-income); }
+.tracker-transaction-item__amount--expense { color: var(--color-expense); }
+
+.tracker-transaction-item__actions {
+  display: flex;
+  gap: 0.25rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.tracker-transaction-item__btn {
+  background: var(--bg-page);
+  border: 1px solid var(--border-light);
+  padding: 0.2rem 0.4rem;
+  font-size: 0.75rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.tracker-transaction-item__btn:hover {
+  background: var(--border-light);
+  color: var(--text-dark);
+}
+
+/* =========================================================
+   TRACKER FOOTER
+   ========================================================= */
+.tracker-footer {
+  text-align: center;
+  padding: 1.5rem 0 0.5rem 0;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-top: 1rem;
+}
+
+/* =========================================================
+   RESPONSIVE — TABLET (≤ 1024px)
+   ========================================================= */
+@media (max-width: 1024px) {
+  .tracker-summary {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .tracker-summary__balance {
+    grid-column: span 2;
+  }
+
+  .tracker-form {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .tracker-form__field:nth-child(1) {
+    grid-column: span 2;
+  }
+
+  .tracker-form__submit {
+    grid-column: span 2;
+  }
+
+  .tracker-history__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================================================
+   RESPONSIVE — MOBILE (≤ 768px)
+   ========================================================= */
+@media (max-width: 768px) {
+  body { padding: 0.75rem; }
+
+  .tracker-app,
+  .tracker-app main { gap: 1rem; }
+
+  .tracker-summary {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .tracker-summary__balance,
+  .tracker-summary__stat {
+    grid-column: span 1;
+    padding: 1.25rem;
+  }
+
+  .tracker-summary__balance-amount {
+    font-size: 2.25rem;
+    word-break: break-all;
+  }
+
+  .tracker-summary__stat-amount { font-size: 1.75rem; }
+
+  .tracker-form-section__card { padding: 1.25rem; }
+
+  .tracker-form {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.25rem;
+  }
+
+  .tracker-form__submit { width: 100%; margin-top: 0.5rem; }
+
+  .tracker-history__grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+/* =========================================================
+   RESPONSIVE — MOBILE KECIL (≤ 640px)
+   ========================================================= */
+@media (max-width: 640px) {
+  .tracker-search__form { flex-direction: column; }
+  .tracker-search__submit { width: 100%; padding: 0.85rem; }
+
+  .tracker-transaction-item {
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+
+  .tracker-transaction-item__right {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    margin-top: 0.5rem;
+    gap: 0.75rem;
+  }
+
+  .tracker-transaction-item__amount {
+    padding-left: 4rem;
+  }
+
+  .tracker-transaction-item__actions { width: 100%; }
+
+  .tracker-transaction-item__btn {
+    flex: 1;
+    padding: 0.75rem 0;
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+}
