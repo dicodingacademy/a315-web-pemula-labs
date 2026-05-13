@@ -48,15 +48,17 @@
  * Kriteria 2: Mengelola Penyimpanan Data (Web Storage API)
  * ========================================================
  */
-// TODO [Basic] Buat fungsi saveData() — simpan array transaksi ke localStorage menggunakan JSON.stringify()
-// TODO [Basic] Buat fungsi loadData() — ambil data dari localStorage dan kembalikan dengan JSON.parse()
-// TODO [Basic] Panggil loadData() saat halaman pertama kali dimuat, gunakan event 'DOMContentLoaded'
+/**
+ * TODO [Basic]:
+ * Data transaksi disimpan ke localStorage menggunakan JSON.stringify(), dan dimuat kembali saat halaman dibuka menggunakan JSON.parse().
+ *  - Tombol "Hapus" berfungsi: transaksi yang dihapus langsung hilang dari layar dan dari localStorage.
+ */
 
 /**
  * TODO [Skilled]:
- * Tambahkan tombol "Hapus" pada setiap kartu transaksi:
- *  - Saat diklik, hapus transaksi dari array berdasarkan id-nya (gunakan array.filter())
- *  - Simpan ulang ke localStorage dan perbarui tampilan
+ * Tombol "Edit" berfungsi: saat ditekan, formulir (#transactionForm) secara otomatis terisi dengan data transaksi yang dipilih.
+ *  - Pengguna dapat mengubah data lalu menyimpan perubahan.
+ *  - Formulir kembali ke mode "Tambah" setelah pembaruan selesai.
  */
 
 /**

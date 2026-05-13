@@ -127,14 +127,15 @@ Kriteria ini menilai kemampuan Anda menyimpan data transaksi di browser sehingga
 
 - **🟢 Basic (2 pts):**
   - Data transaksi disimpan ke `localStorage` menggunakan `JSON.stringify()`, dan dimuat kembali saat halaman dibuka menggunakan `JSON.parse()`.
+  - Tombol "Hapus" berfungsi: transaksi yang dihapus langsung hilang dari layar dan dari `localStorage`.
 
 - **🔵 Skilled (3 pts):**
   - Memenuhi semua pencapaian di level *Basic*.
-  - Tombol "Hapus" berfungsi: transaksi yang dihapus langsung hilang dari layar dan dari `localStorage`.
+  - Tombol "Edit" berfungsi: saat ditekan, formulir (`#transactionForm`) secara otomatis terisi dengan data transaksi yang dipilih. Pengguna dapat mengubah data lalu menyimpan perubahan. Formulir kembali ke mode "Tambah" setelah pembaruan selesai.
 
 - **🟣 Advanced (4 pts):**
   - Memenuhi semua pencapaian di level *Skilled*.
-  - Pembaruan tampilan dilakukan melalui *Custom Event*. Setiap kali data berubah (tambah/hapus/pindah tipe), sebuah sinyal dikirim lewat `dispatchEvent()`, dan satu *listener* merespons sinyal itu untuk memperbarui seluruh tampilan.
+  - Pembaruan tampilan dilakukan melalui *Custom Event*. Setiap kali data berubah (tambah/hapus/edit), sebuah sinyal dikirim lewat `dispatchEvent()`, dan satu *listener* merespons sinyal itu untuk memperbarui seluruh tampilan.
 
 ---
 
