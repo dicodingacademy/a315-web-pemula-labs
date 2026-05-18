@@ -122,18 +122,18 @@ Kriteria ini menilai kemampuan Anda menampilkan data transaksi di layar dan mema
 ### Kriteria 2: Mengelola Penyimpanan Data (Web Storage API)
 Kriteria ini menilai kemampuan Anda menyimpan data transaksi di browser sehingga tidak hilang saat halaman di-refresh.
 
-- **🔴 Reject (0 pts):**
+- **Reject (0 pts):**
   - Semua data transaksi hilang setiap kali halaman di-refresh, menandakan `localStorage` belum digunakan.
 
-- **🟢 Basic (2 pts):**
+- **Basic (2 pts):**
   - Data transaksi disimpan ke `localStorage` menggunakan `JSON.stringify()`, dan dimuat kembali saat halaman dibuka menggunakan `JSON.parse()`.
   - Tombol "Hapus" berfungsi: transaksi yang dihapus langsung hilang dari layar dan dari `localStorage`.
 
-- **🔵 Skilled (3 pts):**
+- **Skilled (3 pts):**
   - Memenuhi semua pencapaian di level *Basic*.
   - Tombol "Edit" berfungsi: saat ditekan, formulir (`#transactionForm`) secara otomatis terisi dengan data transaksi yang dipilih. Pengguna dapat mengubah data lalu menyimpan perubahan. Formulir kembali ke mode "Tambah" setelah pembaruan selesai.
 
-- **🟣 Advanced (4 pts):**
+- **Advanced (4 pts):**
   - Memenuhi semua pencapaian di level *Skilled*.
   - Pembaruan tampilan dilakukan melalui *Custom Event*. Setiap kali data berubah (tambah/hapus/edit), sebuah sinyal dikirim lewat `dispatchEvent()`, dan satu *listener* merespons sinyal itu untuk memperbarui seluruh tampilan.
 
@@ -142,17 +142,17 @@ Kriteria ini menilai kemampuan Anda menyimpan data transaksi di browser sehingga
 ### Kriteria 3: Fitur Interaktif (Pindah Kategori dan Pencarian)
 Kriteria ini menilai kemampuan Anda membangun fitur yang memudahkan pengguna mengelola dan mencari transaksi.
 
-- **🔴 Reject (0 pts):**
+- **Reject (0 pts):**
   - Tombol "Ubah Tipe" tidak berfungsi, atau halaman error saat pengguna menggunakan fitur pencarian.
 
-- **🟢 Basic (2 pts):**
+- **Basic (2 pts):**
   - Tombol "Ubah Tipe" berfungsi: transaksi bertipe *Pemasukan* berpindah ke daftar *Pengeluaran* saat tombol ditekan, dan berlaku sebaliknya.
 
-- **🔵 Skilled (3 pts):**
+- **Skilled (3 pts):**
   - Memenuhi semua pencapaian di level *Basic*.
   - Kolom pencarian berfungsi: daftar transaksi langsung menyesuaikan saat pengguna mengetik kata kunci, hanya menampilkan transaksi yang judulnya cocok.
 
-- **🟣 Advanced (4 pts):**
+- **Advanced (4 pts):**
   - Memenuhi semua pencapaian di level *Skilled*.
   - Saat kolom pencarian dikosongkan, seluruh daftar transaksi muncul kembali secara otomatis.
 
